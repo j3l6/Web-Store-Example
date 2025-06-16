@@ -4,7 +4,7 @@
     <title>Store</title>
     <link rel="stylesheet" href="/static/style.css">
     <script>
-        // 
+        // Format Price
         function formatPrice(price) {
             return parseFloat(price).toLocaleString('en-US', {
                 minimumFractionDigits: 2,
@@ -20,7 +20,7 @@
             document.getElementById(viewId).style.display = 'block';
         }
         
-        // 
+        
         async function loadProducts() {
             const response = await fetch('/products');
             const products = await response.json();
@@ -36,13 +36,13 @@
             document.getElementById('auto-product').innerHTML = options;
         }
 
-        // 
+        // Manual discount, validation between 1 and 70 %
         async function calculateManualDiscount() {
             const productId = document.getElementById('manual-product').value;
             const couponInput = document.getElementById('manual-coupon');
             const coupon = parseFloat(couponInput.value);
             
-            // Validar entrada
+            // Validation
             if (isNaN(coupon)) {
                 alert('Please enter a valid discount percentage');
                 return;
@@ -70,7 +70,7 @@
             }
         }
 
-        // 
+        // Calculte 20%
         async function calculateAutoDiscount() {
             const productId = document.getElementById('auto-product').value;
             
@@ -91,7 +91,7 @@
             }
         }
 
-        // 
+        // Result
         function showResult(result) {
             document.getElementById('result-product').textContent = result.product_name;
             document.getElementById('result-original').textContent = `$${formatPrice(result.original_price)}`;
@@ -100,7 +100,7 @@
             showView('result-view');
         }
 
-        // 
+        // Initialization
         window.onload = () => {
             loadProducts();
             showView('home-view');
@@ -109,7 +109,7 @@
 </head>
 <body>
     <div class="container">
-        <!--  -->
+        <!-- Home  -->
         <div id="home-view" class="view">
             <h1>Welcome to Store</h1>
             <div class="menu">
@@ -118,7 +118,7 @@
             </div>
         </div>
 
-        <!--  -->
+        <!-- manual view -->
         <div id="manual-view" class="view" style="display:none">
             <h1>Buy with Cupon</h1>
             <div class="form-group">
@@ -133,7 +133,7 @@
             <button onclick="showView('home-view')">Return</button>
         </div>
 
-        <!--  -->
+        <!-- 20 % view -->
         <div id="auto-view" class="view" style="display:none">
             <h1>Digital purchase (20% OFF)</h1>
             <div class="form-group">
@@ -144,7 +144,7 @@
             <button onclick="showView('home-view')">Return</button>
         </div>
 
-        <!--  -->
+        <!-- result view -->
         <div id="result-view" class="view" style="display:none">
             <h1>Result of purchase</h1>
             <div class="result">
