@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from products import Product, DigitalProduct
+from . import Product, DigitalProduct
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 import os
