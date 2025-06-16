@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Odoo Store</title>
+    <title>Store</title>
     <link rel="stylesheet" href="/static/style.css">
     <script>
         // Changing between views
@@ -81,7 +81,7 @@
     <div class="container">
         <!-- main view -->
         <div id="home-view" class="view">
-            <h1>Welcome to the Odoo Store</h1>
+            <h1>Welcome to Store</h1>
             <div class="menu">
                 <button onclick="showView('manual-view')">Buy with Coupon</button>
                 <button onclick="showView('auto-view')">Digital Purchase (20% OFF)</button>
@@ -90,7 +90,7 @@
 
         <!-- manual Copupon View -->
         <div id="manual-view" class="view" style="display:none">
-            <h1>Buy with Cupón</h1>
+            <h1>Buy with Cupon</h1>
             <div class="form-group">
                 <label>Product:</label>
                 <select id="manual-product"></select>
@@ -107,7 +107,7 @@
         <div id="auto-view" class="view" style="display:none">
             <h1>Digial purchase (20% OFF)</h1>
             <div class="form-group">
-                <label>Producto:</label>
+                <label>Product:</label>
                 <select id="auto-product"></select>
             </div>
             <button onclick="calculateAutoDiscount()">Compute</button>
