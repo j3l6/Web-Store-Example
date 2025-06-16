@@ -5,6 +5,14 @@
     <link rel="stylesheet" href="/static/style.css">
     <script>
         // 
+        function formatPrice(price) {
+            return parseFloat(price).toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+        }
+
+
         function showView(viewId) {
             document.querySelectorAll('.view').forEach(view => {
                 view.style.display = 'none';
@@ -86,10 +94,9 @@
         // 
         function showResult(result) {
             document.getElementById('result-product').textContent = result.product_name;
-            // 
-            document.getElementById('result-original').textContent = `$${parseFloat(result.original_price).toFixed(2)}`;
+            document.getElementById('result-original').textContent = `$${formatPrice(result.original_price)}`;
             document.getElementById('result-discount').textContent = `${result.discount_rate}%`;
-            document.getElementById('result-final').textContent = `$${parseFloat(result.final_price).toFixed(2)}`;
+            document.getElementById('result-final').textContent = `$${formatPrice(result.final_price)}`;
             showView('result-view');
         }
 
