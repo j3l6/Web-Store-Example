@@ -34,10 +34,20 @@ def get_products():
 
 @app.post("/calculate-discount")
 def calculate_discount(request: DiscountRequest):
-    product = PRODUCTS[request.product_id]
+    # search product
+    product = PRODUCTS.get(request.product_id)
+    if product is None:
+        raise HTTPException(status_code=404, detail="Product not found")
     
-    if request.coupon:
-        # manual copupon, it needs discount amount validation
+    # if there is a coupon
+    if request.coupon is not None:
+        # Coupon validation
+        if request.coupon < 1 or request.coupon > 70:
+            raise HTTPException(
+                status_code=400,
+                detail="Discount coupon must be between 1% and 70%"
+            )
+        # calculate discounted price
         final_price = Product(product['name'], product['price']).get_discounted_price(request.coupon/100)
         return {
             "product_name": product['name'],
@@ -46,7 +56,7 @@ def calculate_discount(request: DiscountRequest):
             "final_price": final_price
         }
     else:
-        # if it is not selected manual coupon, taking predefined values 
+        # Calculate 20% discount
         final_price = DigitalProduct(product['name'], product['price']).get_discounted_price()
         return {
             "product_name": product['name'],
